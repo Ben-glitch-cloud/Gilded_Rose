@@ -60,7 +60,7 @@ describe GildedRose do
     end 
 
     it 'Backstage passes quality should drop to zero when the consent is finished' do 
-      item = [Item.new("Backstage passes to a TAFKAL80ETC concert", 0, 20)] 
+      item = [Item.new("Backstage passes to a TAFKAL80ETC concert", -1, 20)] 
       GildedRose.new(item).update_quality() 
       expect(item[0].quality).to eq(0)
     end  

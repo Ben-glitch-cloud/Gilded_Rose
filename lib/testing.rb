@@ -1,44 +1,10 @@
-class Test   
+@items.each do |item|
+    if item.name != "Aged Brie" &&  item.sell_in < 0 
+        
+      item.name != "Backstage passes to a TAFKAL80ETC concert" && item.quality > 0 && item.name != "Sulfuras, Hand of Ragnaros" ? item.quality = item.quality - 1 : item.quality = item.quality - item.quality  
 
-    def initialize  
-        @item = [1, 2, 3]
-    end 
+    elsif item.sell_in < 0 
 
-    def mix_number
-        Test.new.yes 
-        Test.new.no
+      item.quality < 50 ? item.quality = item.quality + 1 : nil
     end  
-
-    def yes 
-
-        @item.each do |num|
-            if num == 1 
-                puts "Yes"
-            end 
-        end  
-
-    end  
-
-    def no  
-
-        @item.each do |num|  
-            if num != 1  
-                puts "No"
-            end 
-        end  
-
-    end 
-
-end 
-
-test = Test.new 
-
-test.mix_number 
-
-RSpec.describe do 
-    describe Test do 
-        describe 'mix_number' do 
-            
-        end 
-    end 
-end 
+  end  

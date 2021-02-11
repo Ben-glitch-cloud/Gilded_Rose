@@ -18,41 +18,55 @@ class GildedRose
   end     
 
   def update_quality_one  
-
-    @items.each do |item|  
-      if item.name != "Aged Brie" && item.name != "Backstage passes to a TAFKAL80ETC concert" 
-        if item.name != "Sulfuras, Hand of Ragnaros" && item.quality > 0 
-          item.name == "Conjured Mana Cake" ? item.quality = item.quality - 2 : item.quality = item.quality - 1 
-        end 
-      else item.quality < 50  
-        item.quality = item.quality + 1 
-        if item.name == "Backstage passes to a TAFKAL80ETC concert" && item.sell_in < 11 && item.quality < 50
-          item.quality = item.quality + 1  
-          item.sell_in < 6 && item.quality < 50 ? item.quality = item.quality + 1 : nil
-        end 
+    @items.each do |item|   
+      if item.name != "Aged Brie" && item.name != "Backstage passes to a TAFKAL80ETC concert"  
+        update_quality_one_negitve
+      else item.quality < 50   
+        item.quality += 1 
+        update_quality_one_positve
+      end   
+    end  
+  end   
+ 
+  def update_quality_one_negitve 
+    @items.each do |item|   
+      if item.name == "Conjured Mana Cake" && item.quality > 0 
+        item.quality -= 2
+      elsif item.name != "Sulfuras, Hand of Ragnaros" && item.quality > 0 
+        item.quality -= 1
       end  
     end  
-
-  end  
-
-  def update_quality_two  
+  end 
+  
+  def update_quality_one_positve 
     @items.each do |item|
-      item.name != "Sulfuras, Hand of Ragnaros" ? item.sell_in = item.sell_in - 1 : nil  
+      if item.name == "Backstage passes to a TAFKAL80ETC concert" && item.sell_in < 11 && item.quality < 50
+        item.quality += 1  
+        item.sell_in < 6 && item.quality < 50 ? item.quality += 1 : nil 
+      end 
     end  
+  end 
+
+  def update_quality_two   
+
+    @items.each { |item| item.name != "Sulfuras, Hand of Ragnaros" ? item.sell_in -= 1 : nil }
 
   end  
 
   def update_quality_three  
 
     @items.each do |item|
-      if item.name != "Aged Brie" &&  item.sell_in < 0
-        item.name != "Backstage passes to a TAFKAL80ETC concert" && item.quality > 0 && item.name != "Sulfuras, Hand of Ragnaros" ? item.quality = item.quality - 1 : item.quality = item.quality - item.quality 
-      elsif item.sell_in < 0
-        item.quality < 50 ? item.quality = item.quality + 1 : nil
-      end  
+      if item.name != "Aged Brie" &&  item.sell_in < 0 
+        
+        item.name != "Backstage passes to a TAFKAL80ETC concert" && item.quality > 0 && item.name != "Sulfuras, Hand of Ragnaros" ? item.quality -= 1 : item.quality -= item.quality  
+  
+      elsif item.sell_in < 0 
+  
+        item.quality < 50 ? item.quality += 1 : nil
+      end
     end  
+  end   
 
-  end  
 end 
 
 
