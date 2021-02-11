@@ -79,7 +79,7 @@ describe GildedRose do
       item = [Item.new("Conjured Mana Cake", 10, 10)] 
       GildedRose.new(item).update_quality() 
       expect(item[0].quality).to eq(8)
-    end 
+    end  
 
   end
 end

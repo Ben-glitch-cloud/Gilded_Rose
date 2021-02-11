@@ -48,23 +48,21 @@ class GildedRose
   end 
 
   def update_quality_two   
-
     @items.each { |item| item.name != "Sulfuras, Hand of Ragnaros" ? item.sell_in -= 1 : nil }
-
   end  
 
   def update_quality_three  
 
-    @items.each do |item|
-      if item.name != "Aged Brie" &&  item.sell_in < 0 
-        
-        item.name != "Backstage passes to a TAFKAL80ETC concert" && item.quality > 0 && item.name != "Sulfuras, Hand of Ragnaros" ? item.quality -= 1 : item.quality -= item.quality  
-  
-      elsif item.sell_in < 0 
-  
-        item.quality < 50 ? item.quality += 1 : nil
+    @items.each do |item| 
+      if item.name != "Aged Brie" && item.sell_in < 0 && item.name != "Backstage passes to a TAFKAL80ETC concert"  
+        item.quality -= 1
+      elsif item.name == "Backstage passes to a TAFKAL80ETC concert" && item.sell_in < 0 
+        item.quality -= item.quality
+      elsif item.sell_in < 0 && item.quality < 50
+         item.quality += 1 
       end
-    end  
+    end   
+
   end   
 
 end 
